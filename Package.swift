@@ -46,11 +46,8 @@ zTarget = Target.target(name: "Z", path: "Sources/zlib-1.3.1", cSettings: [
 #else
 cSettings = .init()
 
-libtomCSettings = [
-    .unsafeFlags([
-        disableShorten64To32Warning
-    ])
-]
+// Warning suppression must not mark the library unsafe for Xcode app consumers.
+libtomCSettings = []
 
 zTarget = Target.target(name: "Z", linkerSettings: [
     .linkedLibrary("z")
